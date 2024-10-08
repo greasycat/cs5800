@@ -1,0 +1,35 @@
+\documentclass{article}
+\author{Rongfei Jin}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Assignment 2 - Question 1.2}
+\date{\today}
+
+
+\begin{document}
+\section{Question 1.2}
+\begin{align*}
+5^{4358} \mod 10
+\end{align*}
+\section{Solution}
+
+from simple calculation, we suspect $5^n \mod 10$ is always 5, so $5^{4358} \mod 10 = 5$.
+\subsection{Proof}
+
+Base case:
+\begin{align*}
+5^1 \mod 10 = 5
+\end{align*}
+
+Inductive step: assume when $n = k$, the statement holds, then consider $n=k+1$
+\begin{align*}
+5^{k+1} \mod 10 &= 5^k \times 5 \mod 10 \\
+&= (5^k \mod 10 \times 5 \mod 10 ) \mod 10\\
+&= 25 \mod 10 \\
+&= 5
+\end{align*}
+So the statement holds for $n = k+1 \forall k \in \mathbb{Z^+}$, and by the principle of mathematical induction, $5^n \mod 10 = 5$.
+
+
+
+\end{document}

@@ -1,0 +1,37 @@
+\documentclass{article}
+\author{Rongfei Jin}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\title{Quiz 2 - Q2}
+\date{\today}
+\begin{document}
+Given the following numbers:
+\begin{itemize}
+\item Prime number $q=13$
+\item Generator $\alpha=2$
+\item Alice's private key $X_a=5$
+\item Bob's private key $X_b=4$
+\item Eve's private key $X_e=7$
+\end{itemize}
+
+The following steps illustrate how Alice and Bob can establish a shared secret key $K$ using the Diffie-Hellman key exchange protocol:
+
+\begin{enumerate}
+    \item Alice computes $Y_a = \alpha^{X_a} \mod q = 2^5 \mod 13 = 6$ and sends $Y_a$ to Bob, But Eve intercepts the message.
+    \item Eve computes $Y_e = \alpha^{X_e} \mod q = 2^7 \mod 13 = 11$ and sends $Y_e$ to Alice
+    \item Alice computes $K_a = Y_e^{X_a} \mod q = 11^5 \mod 13 = 7$.
+    \item Eve computes $K_a = Y_a^{X_e} \mod q = 6^7 \mod 13 = 7$.
+    \item Now Eve and Alice share a secret key $K_a=7$, however, Alice still thinks she is sharing the secret key with Bob.
+
+    \item Bob computes $Y_b = \alpha^{X_b} \mod q = 2^4 \mod 13 = 3$ and sends $Y_b$ to Alice, But Eve intercepts the message.
+    \item Eve use the same $Y_e$ to send to Bob
+    \item Bob computes $K_b = Y_e^{X_b} \mod q = 11^4 \mod 13 = 3$.
+    \item Eve computes $K_b = Y_b^{X_e} \mod q = 3^7 \mod 13 = 3$.
+    \item Now Eve and Bob share a secret key $K_b=3$, however, Bob still thinks he is sharing the secret key with Alice.
+
+    \item when Alice and Bob try to communicate, Eve can intercept the message and decrypt it using the secret key $K_a=7$ and $K_b=3$. So she can read the message and even modify it before sending it to the other party with ease.
+
+\end{enumerate}
+
+\end{document}

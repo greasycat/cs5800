@@ -1,0 +1,19 @@
+% begin document
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+\section{Q1.2}
+
+Initialization:
+Before the first iteration starts, no elements have been checked, thus subarray of checked items is empty, so the invariant holds.
+
+Maintenance:
+During the loop, after each iteration i, the algorithm has checked the i elements. If item is found in any of these elements, the function returns True and terminates. Otherwise, the algorithm proceeds to the next iteration. The invariant holds.
+
+Termination:
+When the loop finishes, if the element x was found, the search ends (invariant still holds). If the loop terminates without finding x, the invariant ensures x is not present in the list.
+
+\end{document}
+

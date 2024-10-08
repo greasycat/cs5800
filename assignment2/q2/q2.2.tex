@@ -1,0 +1,26 @@
+\documentclass{article}
+\author{Rongfei Jin}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Assignment 2 - Question 2.2}
+\date{\today}
+
+\begin{document}
+\section{Question 2.2}
+$$
+GCD(123456789,123456788)
+$$
+
+\section{Solution}
+We can use the Euclidean algorithm to find the greatest common divisor 
+\begin{align*}
+    123456789 &= 123456788 \times 1 + 1 \\
+\end{align*}
+
+\begin{align*}
+GCD(123456789, 123456788) &= GCD(123456788, 1) \\
+&= GCD(1,0) \\
+&= 1
+\end{align*}
+
+\end{document}

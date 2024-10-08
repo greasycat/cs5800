@@ -1,0 +1,42 @@
+% begin document
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+\section{Question 2-4}
+Given $f(n) = \sum_{n}^{i=1}i^k$ and $g(n) = n^{k+1}$, determine the relationship between $f(n)$ and $g(n)$.
+
+\section{Answer}
+We will first assume that $f(n) = O(g(n))$. This means that there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$
+
+
+We first need to find an upper bound of the summation in $f(n)$. The upper bound is given by:$n^{k+1}$, this is because the largest term in the sum is $n^k$ and there are $n$ terms in the sum. Therefore, the sum is bounded by $n \cdot n^k = n^{k+1}$.
+
+Then we will consider the inequality:
+
+\begin{align*}
+\sum_{i=1}^{n}i^k &\leq c \cdot n^{k+1} \\
+\end{align*}
+
+we can pick $c = 1$ and $n_0 = 1$ to satisfy the inequality.
+
+Next, we will assume that $f(n) = \Omega(g(n))$. This means that there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \geq c \cdot g(n)$ for all $n \geq n_0$.
+
+We will consider the lower bound of the summation in $f(n)$. The lower bound is computed by integrating the function $i^k$ from $1$ to $n$. This is smaller if we divided the interval $[1,n]$ into $n$ equal parts and calculate the area under the curve. The area under the curve is given by $\int_{i}^{i+1} x^k dx$ which is less than $i^k$. Therefore, the lower bound of the sum is given by 
+$$\int_{1}^{n} i^k = \frac{n^{k+1}}{k+1} - \frac{1}{k+1}$$
+
+Then we will consider the inequality:
+
+\begin{align*}
+\sum_{i=1}^{n}i^k \geq \frac{n^{k+1}}{k+1} - \frac{1}{k+1} &\geq c \cdot n^{k+1} \\
+\frac{1}{k+1} - \frac{1}{n^{k+1}(k+1)} &\geq c
+\end{align*}
+
+Such a constant $c$ exists, as shown by the limit of the right hand side of the inequality is $\frac{1}{k+1}$.
+Then, we can pick $c = \frac{1}{k+1} - \frac{1}{2^{k+1}(k+1)}$ and $n_0 = 2$ to satisfy the inequality.
+
+In conclusion, since $f(n) = O(g(n))$ and $f(n) = \Omega(g(n))$ we can conclude that $f(n) = \Theta(g(n))$ by choosing $c_1 = 1, c_2 = \frac{1}{k+1} - \frac{1}{2^{k+1}(k+1)}, n_0 = 2$.
+
+\end{document}
+

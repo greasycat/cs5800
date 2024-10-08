@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+\section*{Question 2}
+Find asymptotic upper and lower bound for the following recurrence relation using master theorem:
+\[
+T(n) = 3T(\frac{n}{2}) + \frac{n}{\log n}
+\]
+
+\subsection*{Solution}
+Given the recurrence:
+\[
+T(n) = 3\, T\left( \frac{n}{2} \right) + \frac{n}{\log n}
+\]
+
+\noindent
+Rewrite in standard form:
+\[
+T(n) = a\, T\left( \frac{n}{b} \right) + f(n)
+\]
+
+\noindent
+where
+\[
+a = 3, \quad b = 2, \quad f(n) = \frac{n}{\log n}
+\]
+
+\noindent
+Compute the exponent \( \log_b(a) \):
+\begin{align*}
+\log_b a = \frac{\ln a}{\ln b} \approx 1.58496
+\end{align*}
+
+\noindent
+Check Theorem Case 1: If \( f(n) = O(n^{\log_b a - \epsilon}) \) for some \( \epsilon > 0 \) 
+
+if we divide \( f(n) \) by \( n^{\log_b a} \), we should get a polynomial:
+\[
+\frac{n^{\log_b a}}{\frac{n}{log n}} \approx n^{0.58496} \log n
+\]
+
+And by picking a small \(\epsilon\), it is clear that \[
+\frac{n}{\log n} = O(n^{\log_b a - \epsilon})
+\]
+
+So case 1 does apply. Therefore, the solution is:
+\[
+T(n) = \Theta(n^{\log_b a}) = \Theta(n^{1.58496})
+\]
+\end{document}

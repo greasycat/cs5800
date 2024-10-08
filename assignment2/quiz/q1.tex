@@ -1,0 +1,27 @@
+\documentclass{article}
+\author{Rongfei Jin}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\title{Quiz 2 - Q1}
+\date{\today}
+\begin{document}
+Given the following numbers:
+\begin{itemize}
+\item Prime number $q=13$
+\item Generator $\alpha=2$
+\item Alice's private key $X_a=5$
+\item Bob's private key $X_b=4$
+\end{itemize}
+
+The following steps illustrate how Alice and Bob can establish a shared secret key $K$ using the Diffie-Hellman key exchange protocol:
+
+\begin{enumerate}
+    \item Alice computes $Y_a = \alpha^{X_a} \mod q = 2^5 \mod 13 = 6$ and sends $Y_a$ to Bob.
+    \item Bob computes $Y_b = \alpha^{X_b} \mod q = 2^4 \mod 13 = 3$ and sends $Y_b$ to Alice.
+    \item Alice computes $K = Y_b^{X_a} \mod q = 3^5 \mod 13 = 9$.
+    \item Bob computes $K = Y_a^{X_b} \mod q = 6^4 \mod 13 = 9$.
+    \item Alice and Bob now share a secret key $K=9$, they can use the number to encrypt and decrypt message using another algorithm they agreed on.
+\end{enumerate}
+
+\end{document}

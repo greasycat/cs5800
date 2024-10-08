@@ -1,0 +1,52 @@
+% begin document
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+\section{Question 2-1}
+Given $f(n) = n^{1.01}$ and $g(n) = n\log(n)^2$, determine the relationship between $f(n)$ and $g(n)$.
+
+\section{Answer}
+We will first assume that $f(n) = O(g(n))$. This means that there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \leq c \cdot g(n)$ for all $n \geq n_0$.
+
+\begin{align*}
+f(n) &\leq c \cdot g(n) \\
+n^{1.01} &\leq c \cdot n\log(n)^2 \\
+n^{0.01} &\leq c \cdot \log(n)^2 \\
+\frac{n^{0.01}}{log(n)^2} &\leq c
+\end{align*}
+
+Then we will can find the limit of the right hand side of the inequality to be infinity, as $n$ approaches infinity.
+
+\begin{align*}
+\lim_{n \to \infty} \frac{n^{0.01}}{log(n)^2} &= \lim_{n \to \infty} \frac{0.01n^{0.01}}{2\log(n)} \tag{L'Hopital}\\
+&= \lim_{n \to \infty} \frac{0.0001n^{0.01}}{2} \\
+&= \infty
+\end{align*}
+
+However, such a constant $c$ does not exist, as the limit of the right hand side of the inequality is infinity. Therefore, it contradicts the assumption that $f(n) = O(g(n))$.
+
+Next we will assume that $f(n) = \Omega(g(n))$. This means that there exists a constant $c > 0$ and $n_0 > 0$ such that $f(n) \geq c \cdot g(n)$ for all $n \geq n_0$.
+
+\begin{align*}
+f(n) &\geq c \cdot g(n) \\
+n^{1.01} &\geq c \cdot n\log(n)^2 \\
+n^{0.01} &\geq c \cdot \log(n)^2 \\
+\frac{n^{0.01}}{log(n)^2} &\geq c
+\end{align*}
+
+Such a constant $c$ exists, as shown by the limit of the right hand side of the inequality.
+
+then we can pick $c = \frac{10^{10}}{1000^2log(10)^2}$ and $n_0 = 10^{1000}$ to satisfy the inequality.
+
+Therefore, $f(n) = \Omega(g(n))$. Since $f(n) = \Omega(g(n))$ and $f(n) \ne O(g(n))$ we can conclude that $f(n) \ne \Theta(g(n))$.
+
+
+
+\end{document}
+
+
+
+
+

@@ -1,0 +1,31 @@
+\documentclass{article}
+\author{Rongfei Jin}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Assignment 2 - Question 2.1}
+\date{\today}
+
+\begin{document}
+\section{Question 2.1}
+$$
+GCD(648, 124)
+$$
+
+\section{Solution}
+We can use the Euclidean algorithm to find the greatest common divisor of 648 and 124.
+\begin{align*}
+648 &= 124 \times 5 + 28 \\
+124 &= 28 \times 4 + 12 \\
+28 &= 12 \times 2 + 4 \\
+12 &= 4 \times 3 + 0
+\end{align*}
+
+\begin{align*}
+GCD(648, 124) &= GCD(124, 28) \\
+&= GCD(28, 12) \\
+&= GCD(12, 4) \\
+&= GCD(4, 0) \\
+&= 4
+\end{align*}
+
+\end{document}
