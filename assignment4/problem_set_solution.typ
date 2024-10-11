@@ -382,4 +382,33 @@ Output:
 
 #pagebreak()
 = Question 4
+
+Let $k in bb(Z^+)$
+
+$
+T(n) &= x T(n/y) + n^z \
+&= x (x T(n/y^2) + (n/y)^z) + n^z \
+&= x^2 T(n/y^2) + x (n/y)^z + n^z \
+&= x^3 T(n/y^3) + x^2 (n/y^2)^z + x (n/y)^z + n^z \ \
+&= dots.h \
+&= x^k T(n/y^k) + x^(k-1) (n/y^(k-1))^z + dots.h + x (n/y)^z + n^z \
+&= x^k T(n/y^k) + sum_(i=0)^(k-1) x^i (n/y^i)^z \
+$
+
+The recursion stops when $n/y^k = 1 arrow.r.double k = log_y n$
+
 == Solution to (a)
+
+When $z < log_y x$
+The geometric sum is 
+$
+sum_(i=0)^(k-1) x^i (n/y^i)^z = sum_(i=0)^(k-1) (x/y^z)^i n^z = frac((x/y^z)^k - 1, x/y^z - 1) n^z
+$
+
+Therefore, the total number of operations is:
+$
+T(n) &= x^k T(n/y^k) + frac((x/y^z)^k - 1, x/y^z - 1) n^z \
+&= x^k T(1) + frac((x/y^z)^k - 1, x/y^z - 1) n^z \
+&= x^(log_y n) + frac((x/y^z)^{log_y n} - 1, x/y^z - 1) n^(log_y x) \
+
+$
