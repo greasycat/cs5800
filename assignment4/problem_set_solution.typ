@@ -397,6 +397,14 @@ $
 
 The recursion stops when $n/y^k = 1 arrow.r.double k = log_y n$
 
+#v(3em)
+Side proof of $ Theta (f(n) + g(n)) subset.eq Theta (max(f(n), g(n))) $
+Notice that $ f(n) + g(n) <= 2 dot max(f(n), g(n)) $ and $ max(f(n), g(n)) <= f(n) + g(n) $
+
+therefore $ Theta (f(n) + g(n)) subset.eq Theta (max(f(n), g(n))) $
+
+
+#pagebreak()
 == Solution to (a)
 
 When $z < log_y x$
@@ -409,6 +417,73 @@ Therefore, the total number of operations is:
 $
 T(n) &= x^k T(n/y^k) + frac((x/y^z)^k - 1, x/y^z - 1) n^z \
 &= x^k T(1) + frac((x/y^z)^k - 1, x/y^z - 1) n^z \
-&= x^(log_y n) + frac((x/y^z)^{log_y n} - 1, x/y^z - 1) n^(log_y x) \
+&= x^(log_y n) + frac((x/y^z)^(log_y n) - 1, x/y^z - 1) n^z \
+&= n^(log_y x) + frac((n^(log_y x)/n^z) - 1, x/y^z - 1) n^z \
+&= n^(log_y x) + frac(n^(log_y x-z) - 1, x/y^z - 1) n^z \
+&= n^(log_y x) + frac(n^(log_y x) - n^z, x/y^z - 1) \
+$
+
+denote $r = x/y^z$, since $z < log_y x arrow.r.double y^z < x arrow.r.double r > 1$,
+we then have:
 
 $
+T(n) &= n^(log_y x) + frac(n^(log_y x) - n^z, r - 1) \
+&= n^(log_y x) + frac(n^(log_y x), r - 1) - frac(n^z, r - 1) \
+&=  (frac(1, r - 1) + 1) n^(log_y x) - (frac(1, r - 1)) n^z \
+&=  Theta((frac(1, r - 1) + 1) n^(log_y x) - (frac(1, r - 1)) n^z )\
+&= Theta (frac(1, r - 1) n^(log_y x)) & "Since" z<log_y x \
+&= Theta (n^(log_y x)) \
+$
+
+#pagebreak()
+= Solution to (b)
+
+When $z = log_y x$, $x/y^z = x/y^(log_y x) = x/x = 1$
+The geometric sum is
+$
+(k)n^z = (log_y n)n^z = n^(log_y x) log_y n
+$
+
+Therefore, the total number of operations is:
+$
+T(n) &= x^k T(n/y^k) + (k)n^z \
+&= x^(log_y n) +  n^(log_y x) log_y n\
+&= n^(log_y x) + n^(log_y x) log_y n\
+&= Theta (n^(log_y x) + n^(log_y x) log_y n)\
+&= Theta (n^(log_y x) log_y n)\
+$
+
+#pagebreak()
+= Solution to (c)
+
+When $z > log_y x$
+
+$
+sum_(i=0)^(k-1) x^i (n/y^i)^z = sum_(i=0)^(k-1) (x/y^z)^i n^z = frac((x/y^z)^k - 1, x/y^z - 1) n^z
+$
+
+Therefore, the total number of operations is:
+$
+T(n) &= x^k T(n/y^k) + frac((x/y^z)^k - 1, x/y^z - 1) n^z \
+&= n^(log_y x) + frac(n^(log_y x) - n^z, x/y^z - 1) \
+$
+
+denote $r = x/y^z$, since $z > log_y x arrow.r.double y^z > x arrow.r.double r < 1$,
+
+$
+T(n) &= n^(log_y x) + frac(n^(log_y x) - n^z, r - 1) \
+&= n^(log_y x) + frac(n^z - n^(log_y x), 1 - r) \
+&= n^(log_y x) +frac(n^z, 1 - r) - frac(n^(log_y x), 1 - r)  \
+&=  (1 - frac(1, 1 - r)) n^(log_y x) + (frac(1, r - 1)) n^z \
+&=  Theta((1 - frac(1, 1 - r)) n^(log_y x) + (frac(1, 1-r)) n^z )\
+&= Theta (frac(1, 1-r)n^z) & "Since" z>log_y x \
+&= Theta (n^(z)) \
+$
+
+
+#pagebreak()
+= Solution to (d)
+
+Given $ T(n)=7T(n/2)+n^2 $ we have $x = 7, y=2, z=2$
+
+Since $z = 2 < log_y x = log_2 7 = 2.807$, we have $T(n) = Theta(n^(log_y x)) approx Theta(n^2.807)$
