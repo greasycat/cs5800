@@ -87,4 +87,101 @@ def q3():
     partition(A, 0, len(A)-1)
     print(A)
 
-q3()
+def q4():
+    class TreeNode:
+        def __init__(self, value=0, left=None, right=None):
+            self.value = value
+            self.left = left
+            self.right = right
+    def preorder_traversal(node):
+        if node:
+            print(node.value, end=" ")  # Visit the root
+            preorder_traversal(node.left)  # Traverse left subtree
+            preorder_traversal(node.right)  # Traverse right subtree
+    def inorder_traversal(node):
+        if node:
+            inorder_traversal(node.left)  # Traverse left subtree
+            print(node.value, end=" ")  # Visit the root
+            inorder_traversal(node.right)  # Traverse right subtree
+    def postorder_traversal(node):
+        if node:
+            postorder_traversal(node.left)  # Traverse left subtree
+            postorder_traversal(node.right)  # Traverse right subtree
+            print(node.value, end=" ")  # Visit the root
+    
+    root = TreeNode("a")
+    root.left = TreeNode("b")
+    root.left.left = TreeNode("d")
+    root.left.right = TreeNode("e")
+
+    root.right = TreeNode("c")
+
+    f = TreeNode("f")
+    f.left = TreeNode("h")
+    f.left.left = TreeNode("l")
+    f.left.right = TreeNode("m")
+    f.left.right.left = TreeNode("q")
+    f.right = TreeNode("i")
+
+    root.right.left = f
+
+    g = TreeNode("g")
+    g.left = TreeNode("j")
+    g.left.left = TreeNode("n")
+    g.left.right = TreeNode("o")
+    g.right = TreeNode("k")
+    g.right.right = TreeNode("p")
+
+    root.right.right = g
+
+    print("Preorder traversal:")
+    preorder_traversal(root)
+    print("\nInorder traversal:")
+    inorder_traversal(root)
+    print("\nPostorder traversal:")
+    postorder_traversal(root)
+
+def q5():
+    class TreeNode:
+        def __init__(self, value=0, left=None, right=None):
+            self.value = value
+            self.left = left
+            self.right = right
+    def preorder_traversal(node):
+        if node:
+            print(node.value, end=" ")  # Visit the root
+            preorder_traversal(node.left)  # Traverse left subtree
+            preorder_traversal(node.right)  # Traverse right subtree
+    def inorder_traversal(node):
+        if node:
+            inorder_traversal(node.left)  # Traverse left subtree
+            print(node.value, end=" ")  # Visit the root
+            inorder_traversal(node.right)  # Traverse right subtree
+    def postorder_traversal(node):
+        if node:
+            postorder_traversal(node.left)  # Traverse left subtree
+            postorder_traversal(node.right)  # Traverse right subtree
+            print(node.value, end=" ")  # Visit the root
+    
+    root = TreeNode("e")
+    root.left = TreeNode("c")
+    root.left.left = TreeNode("a")
+    root.left.left.right = TreeNode("b")
+
+    root.left.right = TreeNode("d")
+    root.right = TreeNode("h")
+    root.right.left = TreeNode("f")
+    root.right.left.right = TreeNode("g")
+    root.right.right = TreeNode("j")
+    root.right.right.left = TreeNode("i")
+
+    print("Preorder traversal:")
+    preorder_traversal(root)
+    print("\nInorder traversal:")
+    inorder_traversal(root)
+    print("\nPostorder traversal:")
+    postorder_traversal(root)
+
+# q5()
+
+print(sorted([4,3]))
