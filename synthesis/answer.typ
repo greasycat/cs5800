@@ -143,7 +143,7 @@ The maximum number of comparisons is 18, which means it costs at maximum 18 doll
 
 
 #pagebreak()
-= Problem 2
+= Problem 3
 #import "@preview/cetz:0.3.0"
 
 == (a)
@@ -264,8 +264,21 @@ $
 
 Therefore, by substitution method, we have $M(n) = (n log n)/2$
 
+== (d)
+
+The merge sort divide the given array 3 times and at the bottom level made 4 comparison no matter the order of the array. The variation of the comparison number occurs in the 2nd merge and top level merge.
+
+consider 2 cases for the 2nd merge, either $3*2=6$ comparison is made for each pair of subarray or $2*2=4$ comparison is made for each pair of subarray. If former case is true, there's no way to have $12-4-6=2$ comparison at the top level. Therefore, the 2nd merge must have 4 comparison for each pair of subarray and the top level must have 4 comparison consequentially
+
+to have 4 comparison at the top level, one array must be greater than the other for all its value. the probabily is $2/(8 C 4) = 1/35$ where C is the combination operator
+
+To have 4 comparison at 2nd level, the one array must be greater than the other for all its value. 
+$2/(4 C 2) = 1/3$
+
+Therefore, the probability of having 4 comparison at the top level and 2nd level is $1/35*1/3*1/3 = 1/315$
+
 #pagebreak()
-= Problem 3
+= Problem 4
 == (a)
 In seleciton sort, we find the minimum element in the unsorted array and swap it with the first element. Then we find the minimum element in the remaining unsorted array and swap it with the second element. We repeat this process until the array is sorted. If the input is sorted, the algorithm still needs to compare every element with the minimum element in the unsorted array. Therefore, The number of comparison is $n + (n-1) + (n-2) + ... + 1 = n(n+1)/2 = n^2/2 + n/2$
 
@@ -361,10 +374,94 @@ Therefore, the counting sort is better than merge sort for this input
 
 
 #pagebreak()
-= Problem 4
-
+= Problem 5
+== (a)
 BFS traverse the graph level by level, starting from the root node, then each immediate neighbor before moving the to the neighbors's neighbor. It utilizes a queue (in which elements lastly inserted is popped out last(LILO)), by enqueuing the starting node and dequeuing the node and enqueuing its neighbors, then repeat. The time complexity of BFS is $O(V+E)$ where V is the number of vertices and E is the number of edges. It also finds the shortest path in an unweighted graph.
 
 DFS traverse the graph by going as deep as possible along each branch before backtracking. It utilizes a stack (in which element lastly inserted is poped first (LIFO)), by pushing the starting node and popping the node and pushing its neighbors, then repeat. The time complexity of DFS is $O(V+E)$ where V is the number of vertices and E is the number of edges. It is not guaranteed to find the shortest path in an unweighted graph, but it can be used to find the connected components of a graph.
 
-For the graph above, 
+For the graph above,  we have
+- BFS Traversal:[a b c d e f g h i j k l m n o p q]
+- DFS Traversal: [a b d e c f h l m q i g j n o k p ]
+
+== (b)
+
+
+Initilaize a path array
+set the starting node as the root node
+
+Step 2:
+- iterate through the starting node's children
+- Append the node to the path array
+- Recursively call the function with the child node as the starting node
+- Append the node to the path array
+
+psudo code:
+```
+global path
+function DFS(node):
+  path.append(node)
+  left = node.left
+  right = node.right
+  if left:
+    path.append((node, left))
+    DFS(left, path)
+    path.append((left, node))
+  if right:
+    path.append((node, right))
+    DFS(right, path)
+    path.append((right, node))
+
+  return path
+
+DFS(root)
+```
+
+
+This is the algorithm to traverse each edge exactly twice in different directions using DFS, 
+- the algorithm will recursively gets to the leaf node and then backtracks to the parent node, then to the next child node if it exists.
+- Each edge is visited in the forward direction when the call stack is being filled. And the edge is visited in the backward direction when the function is being popped out of the call stack.
+- Therefore, each edge is visited exactly twice in different directions.
+
+Since the graph is a binary tree and vertices is visited twice only, the time complexity is $O(n)$
+
+
+== (c)
+By definition of distance between two vertices, it is the number of edges in the shortest path between the two vertices. Therefore, the distance between two vertices is the number of edges in the shortest path between the two vertices.
+
+Note that the futhest pairs of vertices is always between 2 leaves. We can prove this by contradiction, if the furthest pair is not between 2 leaves, for example between a leaf and a non-leaf node, then the distance between the two vertices is the sum of the distance between the leaf and the shared node and the distance between the shared node and the non-leaf node, which is less than the distance between the child leaves of the non-leaf node and the leaf. Therefore, the furthest pair of vertices is always between 2 leaves.
+
+Pairs (g, d), (g, e), (g, n) ,(g, o),(g,p) which all have 7 edges between them. any other pairs of vertices have less than 7 edges between them.
+
+
+
+== (d)
+Step 1:
+Initilaize a diameter variable to 0
+
+Step 2:
+- Define a recursive function to find the height of the node
+- If the node is null, return 0
+- Recursively call the function with the left child node and right child node to get the height
+- Update the diameter to the maximum of the sum of the height of the left child node and the height of the right child node and the current diameter and add 1
+
+Step 3:
+  Call the function with the root node and get the diameter
+
+psudo code:
+```
+diameter = 0
+def height(node):
+  if node is None:
+    return 0
+  left = height(node.left)
+  right = height(node.right)
+  diameter = max(diameter, left + right)
+  return max(left, right) + 1
+
+height(root)
+```
+
+As we proves in the previous question, the furthest pair of vertices is always between 2 leaves. Therefore, the diameter of the tree is the distance between the two leaves. Note that each two leave always have a shared node, therefore the distance is the sum of the heights from the shared node to corresponding leaves. By finding the maximum of the sum of the heights of the left and right child nodes, we can find the diameter of the tree.
+
+The recursive approach ensures that maximum distance on every subtree is calculated. And since the each node is visited once, the time complexity is $O(n)$

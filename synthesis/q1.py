@@ -1,3 +1,4 @@
+import queue
 def q1():
     def max_subarray_sum(arr):
         max_current = max_global = arr[0]
@@ -108,7 +109,41 @@ def q4():
             postorder_traversal(node.left)  # Traverse left subtree
             postorder_traversal(node.right)  # Traverse right subtree
             print(node.value, end=" ")  # Visit the root
+
+    def bfs_traversal(root):
+        if not root:
+            return
+        q = queue.Queue()
+        q.put(root)
+        while not q.empty():
+            node = q.get()
+            print(node.value, end=" ")
+            # Collect children and sort them alphabetically
+            children = []
+            if node.left:
+                children.append(node.left)
+            if node.right:
+                children.append(node.right)
+            children.sort(key=lambda x: x.value)
+            for child in children:
+                q.put(child)
+
+    # DFS Traversal - Preorder (Recursive) with alphabetical ordering
+    def dfs_preorder(node):
+        if node:
+            print(node.value, end=" ")  # Visit the root
+            # Collect children and sort them alphabetically
+            children = []
+            if node.left:
+                children.append(node.left)
+            if node.right:
+                children.append(node.right)
+            children.sort(key=lambda x: x.value)
+            for child in children:
+                dfs_preorder(child)
+
     
+        
     root = TreeNode("a")
     root.left = TreeNode("b")
     root.left.left = TreeNode("d")
@@ -134,12 +169,18 @@ def q4():
 
     root.right.right = g
 
-    print("Preorder traversal:")
-    preorder_traversal(root)
-    print("\nInorder traversal:")
-    inorder_traversal(root)
-    print("\nPostorder traversal:")
-    postorder_traversal(root)
+    print("BFS Traversal:")
+    print(bfs_traversal(root))
+
+    print("DFS Preorder Traversal:")
+    print(dfs_preorder(root))
+
+    # print("DFS Inorder Traversal:")
+    # print(dfs_inorder(root))
+
+    # print("DFS Postorder Traversal:")
+    # print(dfs_postorder(root))
+# q4()
 
 def q5():
     class TreeNode:
@@ -182,6 +223,4 @@ def q5():
     print("\nPostorder traversal:")
     postorder_traversal(root)
 
-# q5()
-
-print(sorted([4,3]))
+q4()
